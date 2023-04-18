@@ -46,6 +46,7 @@ jobs:
           git config --local user.email "cdhomelab@cdhomelab.com"
           git config --local user.name "cd4argo"
           sed -i "s,tag:.*,tag:\ ${{ github.sha }}," values.yml"
-          git add . && git commit -m "Updated image tag"
+          git add .
+          git commit -m "Updated image tag"
           git push origin main
         
