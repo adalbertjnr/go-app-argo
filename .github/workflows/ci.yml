@@ -39,8 +39,9 @@ jobs:
     steps:
       - env:
           REPODIR: go-app-argo-cfg 
+          TOKEN: ${{ secrets.THE_BIG_SECRET_TOKEN }}
         run: |
-          git clone https://${{ secrets.THE_BIG_SECRET_TOKEN }}@github.com/souzagmu/$REPODIR.git
+          git clone https://$TOKEN@github.com/souzagmu/$REPODIR.git
           cd $REPODIR
           git config --local user.email "cdhomelab@cdhomelab.com"
           git config --local user.name "cd4argo"
