@@ -33,3 +33,18 @@ jobs:
           push: true
           tags: szadhub/go-metrics:${{ github.sha }}
         
+  argo:
+    runs-on: ubuntu-latest
+    needs: building
+    steps:
+      - env:
+          REPODIR: go-app-argo-cfg 
+        run: |
+          git config --local user.email cdhomelab@cdhomelab.com
+          git config --local user.name cd4argo
+          git clone https://${{ secrets.THE_BIG_SECRET_TOKEN }}@github.com/souzagmu/$REPODIR.git
+          cd $REPODIR
+          sed -i "s,tag:.*,tag:\ ${{ github.sha }}," values.yml"
+          git add . $$ git commit -m "Updated image tag"
+          git push
+        
