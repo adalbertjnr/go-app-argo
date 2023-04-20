@@ -66,6 +66,7 @@ jobs:
       - name: Deploy to Kubernetes Cluster
         uses: Azure/k8s-deploy@v4.9
         with:
+          namespace: argocd
           manifests: application/application.yml
 
 
