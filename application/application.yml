@@ -1,0 +1,18 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: go-metrics
+  namespace: argocd
+spec:
+  project: default
+  source:
+    repoURL: https://github.com/souzagmu/go-app-argo-cfg.git
+    targetRevision: HEAD
+    path: .
+  destination:
+    server: https://449f2f54-b3a2-491a-bc15-9bf86b43a937.k8s.ondigitalocean.com
+    namespace: default
+  syncPolicy:
+    automated:
+      prune: true
+      selfHel: true
