@@ -67,6 +67,6 @@ jobs:
         uses: Azure/k8s-deploy@v4.9
         with:
           namespace: default
-          manifests: application.yml
+          manifests: application/application.yml
 
 
