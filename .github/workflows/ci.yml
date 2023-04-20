@@ -50,3 +50,12 @@ jobs:
           git commit -m "Updated image tag"
           git push origin main
         
+  post-actions:
+    runs-on: ubuntu-latest
+    needs: argo
+    steps:
+      - name: Checkout source code
+        uses: actions/checkout@v3.5.2
+
+      - name: Running the argo application
+        run: kubectl apply -f ./application/application.yml
