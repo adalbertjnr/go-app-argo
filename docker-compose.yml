@@ -1,0 +1,39 @@
+version: "3.9"
+
+services:
+  db:
+    build: ./postgres-compose/ 
+    container_name: "postgres-compose"
+    ports:
+      - "5432:5432"
+    environment:
+      - POSTGRES_DB=loja
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=123
+    networks:
+      - go-loja
+    volumes:
+      - db_compose_vol:/var/lib/postgresql/data
+  
+  app:
+    build: .
+    container_name: "go-loja-compose"
+    ports:
+      - "5000:5000"
+    environment:
+    - USER=postgres
+    - DB_NAME=loja
+    - PASS=123
+    - HOST=postgres-compose
+    - PORT=5432
+    depends_on:
+      - db
+    networks:
+      - go-loja
+
+volumes:
+  db_compose_vol:
+
+networks:
+  go-loja:
+    driver: bridge
