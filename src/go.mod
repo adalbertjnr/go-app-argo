@@ -1,8 +1,11 @@
-module proj
+module go-app
 
 go 1.20
 
-require github.com/prometheus/client_golang v1.15.0
+require (
+	github.com/lib/pq v1.10.9
+	github.com/prometheus/client_golang v1.15.0
+)
 
 require (
 	github.com/beorn7/perks v1.0.1 // indirect
